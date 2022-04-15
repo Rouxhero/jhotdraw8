@@ -4,6 +4,37 @@
 
 - Projet : JhotDrawn8 : https://github.com/wrandelshofer/jhotdraw8
 
+-----
+
+# english
+# Step of modification attempts
+
+As part of this part of the project, I forked the project to put the changes made.
+I am not put in the push the following attempts:
+
+- Attempt to compile the project using ANT
+
+- Creation of unit tests to increase coverage
+
+## Compiling using ANT
+
+In the root of the repository we have a build-jhotdraw.xml file with ANT syntax, so I tried to compile the project using ANT.
+Unfortunately the project uses the JavaFx dependency, which is no longer added as a base in JDk > 8 . So I tried to download the binary files
+of Jdk11 and JavaFx, then using gradlew, recompiling JDk with JavaFx in it, but even with the help of tutorials from Oracle, my machine running with WSL ubuntu, this ended in failure.
+
+## Creating unit tests
+
+There is a unit test file posted on this repository, but unfortunately the tests turned out to be complicated because for its classes it uses classes defined by itself and without documentation it is very complicated to understand the operation of these classes, which often use very specific types and even complicate to use (*ex event listener lists, which are created with other types, etc*) we therefore end up with very heavy unit tests, sometimes simply to test a constructor . Also the surfire plugin doesn't seem to support mocks, so testing abstracts is impossible.
+So I tried to fix bugs/problems in the code
+
+## Correction
+
+So I ended up trying to correct duplicate code, which is sometimes very cumbersome. So I moved functions that were repeated in classes that extended from the same untreated class, so we lose some line of redundant code, but again the code being very specific, with custom objects, it is difficult to extract method.
+
+-----
+
+# Français
+
 # Etape des tentatives de modification
 
 Dans le cadre de cette partie du projet, j'ai fork le projet afin de mettre les modifications effectuées.
