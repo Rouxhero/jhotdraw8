@@ -1,13 +1,16 @@
 /*
  * @(#)AbstractReadOnlySet.java
- * Copyright © 2022 The authors and contributors of JHotDraw. MIT License.
+ * Copyright © 2021 The authors and contributors of JHotDraw. MIT License.
  */
 package org.jhotdraw8.collection;
+import org.jhotdraw8.annotation.NonNull;
+
+import java.util.Iterator;
+import java.util.Set;
 
 public abstract class AbstractReadOnlySet<E> extends AbstractReadOnlyCollection<E> implements ReadOnlySet<E> {
-    public AbstractReadOnlySet() {
-    }
-
+    
+    
     @Override
     public boolean equals(Object o) {
         if (o == this) {
@@ -31,6 +34,19 @@ public abstract class AbstractReadOnlySet<E> extends AbstractReadOnlyCollection<
 
     @Override
     public int hashCode() {
-        return ReadOnlySet.iteratorToHashCode(this.iterator());
+        int hashCode = 1;
+        for (E e : this) {
+            hashCode = 31 * hashCode + (e == null ? 0 : e.hashCode());
+        }
+        return hashCode;
     }
+
+  
+    public void copyInto(Object[] out, int offset) {
+        int i = offset;
+        for (E e : this) {
+            out[i++] = e;
+        }
+    }
+
 }

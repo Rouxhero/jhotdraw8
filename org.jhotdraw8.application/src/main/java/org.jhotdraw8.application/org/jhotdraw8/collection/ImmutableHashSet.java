@@ -1,6 +1,6 @@
 /*
  * @(#)ImmutableHashSet.java
- * Copyright © 2022 The authors and contributors of JHotDraw. MIT License.
+ * Copyright © 2021 The authors and contributors of JHotDraw. MIT License.
  */
 package org.jhotdraw8.collection;
 
@@ -20,7 +20,7 @@ import java.util.Set;
 public final class ImmutableHashSet<E> extends AbstractReadOnlySet<E> implements ImmutableSet<E> {
 
     static final ImmutableHashSet<Object> EMPTY = new ImmutableHashSet<>(Collections.emptySet());
-    private final Set<E> backingSet;
+    protected final Set<E> backingSet;
 
     public ImmutableHashSet(@NonNull Collection<? extends E> copyMe) {
         switch (copyMe.size()) {
@@ -82,47 +82,33 @@ public final class ImmutableHashSet<E> extends AbstractReadOnlySet<E> implements
 
     }
 
-    ImmutableHashSet(boolean privateConstructor, Set<E> backingSet) {
+     ImmutableHashSet(boolean privateConstructor, Set<E> backingSet) {
         this.backingSet = backingSet;
     }
-
-    @Override
+      @Override
     public boolean contains(Object o) {
         return backingSet.contains(o);
     }
-
     @Override
     public @NonNull Iterator<E> iterator() {
         return new Iterator<E>() {
             private final Iterator<? extends E> i = backingSet.iterator();
-
             @Override
             public boolean hasNext() {
                 return i.hasNext();
             }
-
             @Override
             public E next() {
                 return i.next();
             }
-
             @Override
             public void remove() {
                 throw new UnsupportedOperationException();
             }
         };
     }
-
     @Override
     public int size() {
         return backingSet.size();
     }
-
-    public void copyInto(Object[] out, int offset) {
-        int i = offset;
-        for (E e : this) {
-            out[i++] = e;
-        }
-    }
-
 }

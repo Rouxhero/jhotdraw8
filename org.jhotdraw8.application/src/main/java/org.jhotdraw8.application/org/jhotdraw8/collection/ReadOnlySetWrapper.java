@@ -1,6 +1,6 @@
 /*
  * @(#)ReadOnlySetWrapper.java
- * Copyright © 2022 The authors and contributors of JHotDraw. MIT License.
+ * Copyright © 2021 The authors and contributors of JHotDraw. MIT License.
  */
 package org.jhotdraw8.collection;
 
@@ -18,50 +18,37 @@ import java.util.Set;
  * @author Werner Randelshofer
  */
 public final class ReadOnlySetWrapper<E> extends AbstractReadOnlySet<E> {
-
-    private final Set<? extends E> backingSet;
+ protected final Set<? extends E> backingSet;
 
     public ReadOnlySetWrapper(Set<? extends E> backingSet) {
         this.backingSet = backingSet;
     }
-
-    @Override
+      @Override
     public boolean contains(Object o) {
         return backingSet.contains(o);
     }
-
     @Override
     public @NonNull Iterator<E> iterator() {
         return new Iterator<E>() {
             private final Iterator<? extends E> i = backingSet.iterator();
-
             @Override
             public boolean hasNext() {
                 return i.hasNext();
             }
-
             @Override
             public E next() {
                 return i.next();
             }
-
             @Override
             public void remove() {
                 throw new UnsupportedOperationException();
             }
         };
     }
-
     @Override
     public int size() {
         return backingSet.size();
     }
 
-    public void copyInto(Object[] out, int offset) {
-        int i = offset;
-        for (E e : this) {
-            out[i++] = e;
-        }
-    }
 
 }
