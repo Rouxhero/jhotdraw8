@@ -4,6 +4,14 @@
 
 - Projet : JhotDrawn8 : https://github.com/wrandelshofer/jhotdraw8
 
+En:
+
+I don't have make the pull-request because my change are minimal and for a major part, it's was already made by the owner in the same time
+
+Fr:
+
+Je n'ai pas à faire la pull-request car mes modifications sont minimes et pour la majeure partie, elles ont déjà été faites par le propriétaire dans le même temps
+
 -----
 
 # english
